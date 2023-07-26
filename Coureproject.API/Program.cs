@@ -1,9 +1,14 @@
+using Courseprject.Common.Interfaces;
+using Courseprject.Common.Model;
+using Courseproject.Business;
 using Courseproject.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+DIConfiguration.RegisterService(builder.Services);
 builder.Services.AddDbContext<ApplicationDbContext>();
+builder.Services.AddScoped<IGenericRepository<Address>, GenericRepository<Address>>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

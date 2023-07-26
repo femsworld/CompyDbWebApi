@@ -88,4 +88,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         DbSet.Attach(entity);
         ApplicationDbContext.Entry(entity).State = EntityState.Modified;
     }
+
+    Task<int> IGenericRepository<T>.SaveChangesAsync()
+    {
+        throw new NotImplementedException();
+    }
 }

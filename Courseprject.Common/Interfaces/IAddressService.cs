@@ -1,4 +1,6 @@
-﻿namespace Courseprject.Common.Interfaces;
+﻿using Courseprject.Common.Dtos;
+
+namespace Courseprject.Common.Interfaces;
 
 public interface IAddressService
 {

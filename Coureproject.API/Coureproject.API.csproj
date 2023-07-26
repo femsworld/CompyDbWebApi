@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Courseproject.Business\Courseproject.Business.csproj" />
     <ProjectReference Include="..\Courseproject.Infrastructure\Courseproject.Infrastructure.csproj" />
   </ItemGroup>
 
