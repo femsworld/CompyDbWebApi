@@ -7,11 +7,11 @@ namespace Coureproject.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AddresssController : ControllerBase
+    public class AddressController : ControllerBase
     {
         private IAddressService AddressService { get; }
 
-        public AddresssController(IAddressService addressService)
+        public AddressController(IAddressService addressService)
         {
             AddressService = addressService;
         }

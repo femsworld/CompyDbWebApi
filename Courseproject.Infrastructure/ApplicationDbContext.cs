@@ -1,10 +1,9 @@
-﻿using Courseprject.Common.Model;
+﻿using Courseproject.Common.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Courseproject.Infrastructure;
-
 
 public class ApplicationDbContext : IdentityDbContext<IdentityUser, IdentityRole, string>
 {
@@ -15,7 +14,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser, IdentityRole
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
-        
+
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

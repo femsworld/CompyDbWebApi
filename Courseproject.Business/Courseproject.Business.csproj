@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Courseprject.Common\Courseprject.Common.csproj" />
+    <ProjectReference Include="..\Courseproject.Common\Courseproject.Common.csproj" />
   </ItemGroup>
 
 </Project>

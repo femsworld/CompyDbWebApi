@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using Courseprject.Common.Dtos;
-using Courseprject.Common.Interfaces;
-using Courseprject.Common.Model;
-using Microsoft.VisualBasic;
+using Courseproject.Common.Dtos;
+using Courseproject.Common.Interfaces;
+using Courseproject.Common.Model;
 
 namespace Courseproject.Business.Services;
 
@@ -22,7 +21,7 @@ public class AddressService : IAddressService
     {
         var entity = Mapper.Map<Address>(addressCreate);
         await AddressRepository.InsertAsync(entity);
-       await AddressRepository.SaveChangesAsync();
+        await AddressRepository.SaveChangesAsync();
         return entity.Id;
     }
 
@@ -45,7 +44,7 @@ public class AddressService : IAddressService
         return Mapper.Map<List<AddressGet>>(entities);
     }
 
-    public async Task UpdateAddresssAsync(AddressUpdate addressUpdate)
+    public async Task UpdateAddressAsync(AddressUpdate addressUpdate)
     {
         var entity = Mapper.Map<Address>(addressUpdate);
         AddressRepository.Update(entity);

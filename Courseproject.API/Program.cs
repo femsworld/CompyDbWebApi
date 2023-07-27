@@ -1,12 +1,12 @@
-using Courseprject.Common.Interfaces;
-using Courseprject.Common.Model;
 using Courseproject.Business;
+using Courseproject.Common.Interfaces;
+using Courseproject.Common.Model;
 using Courseproject.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-DIConfiguration.RegisterService(builder.Services);
+DIConfiguration.RegisterServices(builder.Services);
 builder.Services.AddDbContext<ApplicationDbContext>();
 builder.Services.AddScoped<IGenericRepository<Address>, GenericRepository<Address>>();
 
@@ -24,9 +24,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-using(var scope = app.Services.CreateScope())
+using (var scope = app.Services.CreateScope())
 {
-    var dbContext =  scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     dbContext.Database.EnsureCreated();
 }
 

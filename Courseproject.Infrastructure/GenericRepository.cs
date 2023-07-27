@@ -1,6 +1,7 @@
-﻿using Courseprject.Common.Interfaces;
-using Courseprject.Common.Model;
+﻿using Courseproject.Common.Interfaces;
+using Courseproject.Common.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Linq.Expressions;
 
 namespace Courseproject.Infrastructure;
@@ -16,12 +17,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         DbSet = applicationDbContext.Set<T>();
     }
 
-
     public void Delete(T entity)
     {
         if (ApplicationDbContext.Entry(entity).State == EntityState.Detached)
             DbSet.Attach(entity);
-            DbSet.Remove(entity);
+        DbSet.Remove(entity);
     }
 
     public async Task<List<T>> GetAsync(int? skip, int? take, params Expression<Func<T, object>>[] includes)
@@ -40,7 +40,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         return await query.ToListAsync();
     }
 
-    public async Task<T> GetByIdAsync(int id, params Expression<Func<T, object>>[] includes)
+    public async Task<T?> GetByIdAsync(int id, params Expression<Func<T, object>>[] includes)
     {
         IQueryable<T> query = DbSet;
 
@@ -52,7 +52,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         return await query.SingleOrDefaultAsync();
     }
 
-    public async Task<List<T>> GetFliteredAsync(Expression<Func<T, bool>>[] filters, int? skip, int? take, params Expression<Func<T, object>>[] includes)
+    public async Task<List<T>> GetFilteredAsync(Expression<Func<T, bool>>[] filters, int? skip, int? take, params Expression<Func<T, object>>[] includes)
     {
         IQueryable<T> query = DbSet;
 
@@ -69,7 +69,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
             query = query.Take(take.Value);
 
         return await query.ToListAsync();
-
     }
 
     public async Task<int> InsertAsync(T entity)
@@ -78,7 +77,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         return entity.Id;
     }
 
-    public async void SaveChangesAsync()
+    public async Task SaveChangesAsync()
     {
         await ApplicationDbContext.SaveChangesAsync();
     }
@@ -87,10 +86,5 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         DbSet.Attach(entity);
         ApplicationDbContext.Entry(entity).State = EntityState.Modified;
-    }
-
-    Task<int> IGenericRepository<T>.SaveChangesAsync()
-    {
-        throw new NotImplementedException();
     }
 }
